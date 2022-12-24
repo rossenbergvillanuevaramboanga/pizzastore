@@ -42,6 +42,4 @@ public class Ordine {
     @Column(name = "costo")
     private Integer costo;
 
-
-
 }
