@@ -22,24 +22,29 @@ public class Ordine {
     @Column(name = "id")
     private Long id;
 
-    @ManyToMany
-    @JoinTable(name = "ordine_pizza", joinColumns = @JoinColumn(name = "ordine_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "ID"))
-    private Set<Pizza> pizze = new HashSet<Pizza>(0);
-
     @Column(name = "data")
     private LocalDate data;
 
     @Column(name = "closed")
-    private boolean closed;
+    private Boolean closed;
 
     @Column(name = "codice")
     private String codice;
+
+
+    @Column(name = "costo")
+    private Integer costo;
+
+    /*Legami foreign key su Pizza e UtenteFattorino*/
+
+    @ManyToMany
+    @JoinTable(name = "ordine_pizza", joinColumns = @JoinColumn(name = "ordine_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "ID"))
+    private Set<Pizza> pizze = new HashSet<Pizza>(0);
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "utente_id", nullable = true)
     private Utente fattorino;
 
-    @Column(name = "costo")
-    private Integer costo;
+
 
 }
