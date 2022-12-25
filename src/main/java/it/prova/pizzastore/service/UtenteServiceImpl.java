@@ -60,7 +60,7 @@ public class UtenteServiceImpl implements UtenteService {
     }
 
     public List<Utente> findByExample(Utente example) {
-        // TODO Da implementare
+        // TODO Implementare findByExample
         return listAllUtenti();
     }
 

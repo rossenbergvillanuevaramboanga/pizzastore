@@ -22,8 +22,7 @@ public class Pizza {
     private String ingredienti;
     @Column(name = "prezzoBase")
     private Integer prezzoBase;
-
     @Column(name = "attivo")
-    private boolean attivo;
+    private Boolean attivo;
 
 }
