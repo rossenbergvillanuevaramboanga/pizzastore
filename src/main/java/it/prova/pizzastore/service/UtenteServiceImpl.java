@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -49,7 +49,7 @@ public class UtenteServiceImpl implements UtenteService {
     public void inserisciNuovo(Utente utenteInstance) {
         utenteInstance.setStato(StatoUtente.CREATO);
 /*        utenteInstance.setPassword(passwordEncoder.encode(utenteInstance.getPassword()));*/
-        utenteInstance.setDateCreated(new Date());
+        utenteInstance.setDateCreated(LocalDate.now());
         repository.save(utenteInstance);
     }
 
