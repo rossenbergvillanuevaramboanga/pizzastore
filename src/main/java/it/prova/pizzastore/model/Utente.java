@@ -3,7 +3,7 @@ package it.prova.pizzastore.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,7 +32,7 @@ public class Utente {
     @Column(name = "email")
     private String email;
     @Column(name = "dateCreated")
-    private Date dateCreated;
+    private LocalDate dateCreated;
 
     // se non uso questa annotation viene gestito come un intero
     @Enumerated(EnumType.STRING)
