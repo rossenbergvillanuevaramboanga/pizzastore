@@ -26,25 +26,30 @@ public class PizzaServiceImpl implements PizzaService {
     }
 
     @Transactional
-    public void aggiorna(Pizza pizzaInstance) {
+    public Pizza aggiorna(Pizza pizzaInstance) {
         Pizza pizzaReloaded = repository.findById(pizzaInstance.getId()).orElse(null);
         if(pizzaReloaded == null) throw new RuntimeException("Elemento non trovato");
         pizzaReloaded.setDescrizione(pizzaInstance.getDescrizione());
         pizzaReloaded.setIngredienti(pizzaInstance.getIngredienti());
         pizzaReloaded.setPrezzoBase(pizzaInstance.getPrezzoBase());
         pizzaReloaded.setAttivo(pizzaInstance.getAttivo());
-        repository.save(pizzaReloaded);
+        return repository.save(pizzaReloaded);
     }
 
     @Transactional
-    public void inserisciNuovo(Pizza pizzaInstance) {
+    public Pizza inserisciNuovo(Pizza pizzaInstance) {
         pizzaInstance.setAttivo(true);
-        repository.save(pizzaInstance);
+        return repository.save(pizzaInstance);
     }
 
     @Transactional
     public void rimuovi(Long idToRemove) {
         repository.deleteById(idToRemove);
+    }
+
+    @Override
+    public List<Pizza> findByExample(Pizza example) {
+        return repository.findByExample(example);
     }
 
 }

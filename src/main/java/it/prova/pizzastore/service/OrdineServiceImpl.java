@@ -31,7 +31,7 @@ public class OrdineServiceImpl implements OrdineService{
     }
 
     @Transactional
-    public void aggiorna(Ordine ordineInstance) {
+    public Ordine aggiorna(Ordine ordineInstance) {
         Ordine ordineReloaded = repository.findById(ordineInstance.getId()).orElse(null);
         if(ordineReloaded == null)
             throw new RuntimeException("Elemento non trovato");
@@ -40,13 +40,13 @@ public class OrdineServiceImpl implements OrdineService{
         ordineReloaded.setClosed(ordineInstance.getClosed());
         ordineReloaded.setCodice(ordineInstance.getCodice());
         ordineReloaded.setFattorino(ordineInstance.getFattorino());
-        repository.save(ordineReloaded);
+        return repository.save(ordineReloaded);
     }
 
     @Transactional
-    public void inserisciNuovo(Ordine ordineInstance) {
+    public Ordine inserisciNuovo(Ordine ordineInstance) {
         ordineInstance.setClosed(false);
-        repository.save(ordineInstance);
+        return repository.save(ordineInstance);
     }
 
     @Transactional

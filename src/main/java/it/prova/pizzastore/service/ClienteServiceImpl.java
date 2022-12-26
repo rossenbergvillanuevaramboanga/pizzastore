@@ -25,7 +25,7 @@ public class ClienteServiceImpl implements ClienteService{
     }
 
     @Transactional
-    public void aggiorna(Cliente clienteInstance) {
+    public Cliente aggiorna(Cliente clienteInstance) {
         Cliente clienteReloaded = repository.findById(clienteInstance.getId()).orElse(null);
         if(clienteReloaded == null )
             throw new RuntimeException("Elemento non trovato");
@@ -33,14 +33,14 @@ public class ClienteServiceImpl implements ClienteService{
         clienteReloaded.setCognome(clienteInstance.getCognome());
         clienteReloaded.setIndirizzo(clienteInstance.getIndirizzo());
         clienteReloaded.setAttivo(clienteInstance.isAttivo());
-        repository.save(clienteInstance);
+        return repository.save(clienteInstance);
 
     }
 
     @Transactional
-    public void inserisciNuovo(Cliente clienteInstance) {
+    public Cliente inserisciNuovo(Cliente clienteInstance) {
         clienteInstance.setAttivo(true);
-        repository.save(clienteInstance);
+        return repository.save(clienteInstance);
     }
 
     @Transactional

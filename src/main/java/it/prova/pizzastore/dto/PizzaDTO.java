@@ -50,9 +50,9 @@ public class PizzaDTO {
         }).collect(Collectors.toList());
     }
 
-    public static Set<PizzaDTO> createPizzaDTOListFromModelList(List<Pizza> modelListInput){
+    public static List<PizzaDTO> createPizzaDTOListFromModelList(List<Pizza> modelListInput){
         return modelListInput.stream().map(pizza -> {
             return PizzaDTO.buildPizzaDTOFromModel(pizza);
-        }).collect(Collectors.toSet());
+        }).collect(Collectors.toList());
     }
 }

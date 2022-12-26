@@ -10,9 +10,11 @@ public interface PizzaService {
 
     public Pizza caricaSingolaPizza(Long id);
 
-    public void aggiorna(Pizza pizzaInstance);
+    public Pizza aggiorna(Pizza pizzaInstance);
 
-    public void inserisciNuovo(Pizza pizzaInstance);
+    public Pizza inserisciNuovo(Pizza pizzaInstance);
 
     public void rimuovi(Long idToRemove);
+
+    public List<Pizza> findByExample(Pizza example);
 }
