@@ -1,5 +1,6 @@
 package it.prova.pizzastore.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import it.prova.pizzastore.model.Cliente;
 import lombok.*;
 
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ClienteDTO {
 
 
@@ -47,7 +49,7 @@ public class ClienteDTO {
                 .nome(clientModel.getNome())
                 .cognome(clientModel.getCognome())
                 .indirizzo(clientModel.getIndirizzo())
-                .attivo(clientModel.isAttivo())
+                .attivo(clientModel.getAttivo())
                 .build();
 
         return result;
