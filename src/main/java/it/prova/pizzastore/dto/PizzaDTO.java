@@ -45,14 +45,14 @@ public class PizzaDTO {
     }
 
     public static List<PizzaDTO> createPizzaDTOListFromModelSet(Set<Pizza> modelListInput){
-        return modelListInput.stream().map(pizza -> {
-            return PizzaDTO.buildPizzaDTOFromModel(pizza);
-        }).collect(Collectors.toList());
+        return modelListInput.stream().map(PizzaDTO::buildPizzaDTOFromModel).collect(Collectors.toList());
     }
 
     public static List<PizzaDTO> createPizzaDTOListFromModelList(List<Pizza> modelListInput){
-        return modelListInput.stream().map(pizza -> {
-            return PizzaDTO.buildPizzaDTOFromModel(pizza);
-        }).collect(Collectors.toList());
+        return modelListInput.stream().map(PizzaDTO::buildPizzaDTOFromModel).collect(Collectors.toList());
+    }
+
+    public static Set<PizzaDTO> createPizzaDTOSetFromModelSet(Set<Pizza> modelListInput){
+        return modelListInput.stream().map(PizzaDTO::buildPizzaDTOFromModel).collect(Collectors.toSet());
     }
 }

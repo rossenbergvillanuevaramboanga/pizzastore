@@ -17,4 +17,6 @@ public interface OrdineService {
     public Ordine inserisciNuovo(Ordine ordineInstance);
 
     public void rimuovi(Long idToRemove);
+
+    public List<Ordine> findByExample(Ordine example);
 }

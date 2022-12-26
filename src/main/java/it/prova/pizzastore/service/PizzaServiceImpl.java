@@ -52,4 +52,9 @@ public class PizzaServiceImpl implements PizzaService {
         return repository.findByExample(example);
     }
 
+    @Override
+    public Pizza findByDescrizione(String descrizione) {
+        return repository.findByDescrizione(descrizione);
+    }
+
 }

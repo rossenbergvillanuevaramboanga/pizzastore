@@ -59,4 +59,9 @@ public class OrdineServiceImpl implements OrdineService{
         repository.save(ordineReloaded);
     }
 
+    @Override
+    public List<Ordine> findByExample(Ordine example) {
+        return repository.findByExample(example);
+    }
+
 }

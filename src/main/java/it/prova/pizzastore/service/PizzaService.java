@@ -17,4 +17,6 @@ public interface PizzaService {
     public void rimuovi(Long idToRemove);
 
     public List<Pizza> findByExample(Pizza example);
+
+    public Pizza findByDescrizione(String descrizione);
 }
