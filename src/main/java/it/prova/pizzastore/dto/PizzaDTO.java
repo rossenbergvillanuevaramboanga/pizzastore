@@ -27,13 +27,14 @@ public class PizzaDTO {
     private String ingredienti;
     @NotNull(message = "{prezzoBase.notnull}")
     private Integer prezzoBase;
-    @NotNull(message = "{attivo.notnull}")
+
     private Boolean attivo;
 
     public Pizza buildPizzaModel(){
         Pizza result = Pizza.builder()
                 .id(id)
                 .descrizione(descrizione)
+                .ingredienti(ingredienti)
                 .prezzoBase(prezzoBase)
                 .attivo(attivo)
                 .build();

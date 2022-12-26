@@ -56,4 +56,9 @@ public class ClienteServiceImpl implements ClienteService{
     public List<Cliente> findByExample(Cliente example) {
         return repository.findByExample(example);
     }
+
+    @Override
+    public Cliente findByNomeAndCognome(String nome, String cognome) {
+        return repository.findByNomeAndCognome(nome,cognome);
+    }
 }

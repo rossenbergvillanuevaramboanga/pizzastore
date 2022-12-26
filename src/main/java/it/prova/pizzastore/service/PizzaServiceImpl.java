@@ -44,7 +44,11 @@ public class PizzaServiceImpl implements PizzaService {
 
     @Transactional
     public void rimuovi(Long idToRemove) {
-        repository.deleteById(idToRemove);
+        /*Rimozione Logica della pizza*/
+        Pizza pizzaReloaded = repository.findById(idToRemove).orElse(null);
+        if(pizzaReloaded == null) throw new RuntimeException("Elemento non trovato");
+        pizzaReloaded.setAttivo(false);
+        repository.save(pizzaReloaded);
     }
 
     @Override

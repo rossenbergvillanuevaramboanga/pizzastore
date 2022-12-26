@@ -1,5 +1,6 @@
 package it.prova.pizzastore;
 
+import it.prova.pizzastore.model.Cliente;
 import it.prova.pizzastore.model.Pizza;
 import it.prova.pizzastore.model.Ruolo;
 import it.prova.pizzastore.model.Utente;
@@ -141,6 +142,33 @@ public class PizzastoreApplication implements CommandLineRunner {
                     .ingredienti("Pomodoro, Mozzarella, Prosciutto, Olive, Funghi, Capperi e Carciofini")
                     .build();
             pizzaServiceInstance.inserisciNuovo(capricciosa);
+        }
+
+        if(clienteServiceInstance.findByNomeAndCognome("Mario","Rossi") == null){
+            Cliente marioRossi = Cliente.builder()
+                    .nome("Mario")
+                    .cognome("Rossi")
+                    .indirizzo("Via Roma 10")
+                    .build();
+            clienteServiceInstance.inserisciNuovo(marioRossi);
+        }
+
+        if(clienteServiceInstance.findByNomeAndCognome("Marco","Verdi") == null){
+            Cliente marcoVerdi = Cliente.builder()
+                    .nome("Marco")
+                    .cognome("Verdi")
+                    .indirizzo("Via Milano 20")
+                    .build();
+            clienteServiceInstance.inserisciNuovo(marcoVerdi);
+        }
+
+        if(clienteServiceInstance.findByNomeAndCognome("Luca","Blu") == null){
+            Cliente lucaBlu = Cliente.builder()
+                    .nome("Luca")
+                    .cognome("Blu")
+                    .indirizzo("Via Napoli 10")
+                    .build();
+            clienteServiceInstance.inserisciNuovo(lucaBlu);
         }
 
     }
