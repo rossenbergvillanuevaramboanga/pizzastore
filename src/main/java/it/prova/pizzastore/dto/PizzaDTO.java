@@ -1,5 +1,6 @@
 package it.prova.pizzastore.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import it.prova.pizzastore.model.Pizza;
 import lombok.*;
 
@@ -14,6 +15,8 @@ import java.util.stream.Collectors;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PizzaDTO {
 
 

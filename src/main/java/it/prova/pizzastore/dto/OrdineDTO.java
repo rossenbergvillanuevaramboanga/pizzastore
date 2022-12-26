@@ -1,5 +1,6 @@
 package it.prova.pizzastore.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import it.prova.pizzastore.model.Ordine;
 import it.prova.pizzastore.model.Pizza;
 import it.prova.pizzastore.model.Utente;
@@ -16,6 +17,8 @@ import java.util.stream.Collectors;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrdineDTO {
 
     private Long id;
