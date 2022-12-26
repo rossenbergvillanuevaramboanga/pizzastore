@@ -3,6 +3,8 @@ package it.prova.pizzastore.dto;
 import it.prova.pizzastore.model.Pizza;
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,9 +18,13 @@ public class PizzaDTO {
 
 
     private Long id;
+    @NotBlank(message = "{descrizione.notblank}")
     private String descrizione;
+    @NotBlank(message = "{ingredienti.notnull}")
     private String ingredienti;
+    @NotNull(message = "{prezzoBase.notnull}")
     private Integer prezzoBase;
+    @NotNull(message = "{attivo.notnull}")
     private Boolean attivo;
 
     public Pizza buildPizzaModel(){

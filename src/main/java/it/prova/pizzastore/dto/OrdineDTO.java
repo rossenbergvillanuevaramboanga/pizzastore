@@ -5,6 +5,8 @@ import it.prova.pizzastore.model.Pizza;
 import it.prova.pizzastore.model.Utente;
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -17,11 +19,17 @@ import java.util.stream.Collectors;
 public class OrdineDTO {
 
     private Long id;
+
     private LocalDate data;
+
     private Boolean closed;
+    @NotBlank(message = "{codice.notblank}")
     private String codice;
+    @NotNull(message = "{costo.notnull}")
     private Integer costo;
+
     private Long[] pizzeIds;
+
     private Long fattorinoId;
 
     public Ordine buildOrdineModel(boolean includeIdPizze, boolean includeIdFattorino){
