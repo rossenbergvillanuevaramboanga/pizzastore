@@ -37,6 +37,11 @@ public class Ordine {
 
     /*Legami foreign key su Pizza e UtenteFattorino*/
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id", nullable = true)
+    private Cliente cliente;
+
     @ManyToMany
     @JoinTable(name = "ordine_pizza", joinColumns = @JoinColumn(name = "ordine_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "ID"))
     private Set<Pizza> pizze = new HashSet<Pizza>(0);

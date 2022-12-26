@@ -25,7 +25,7 @@ public class PizzaServiceImpl implements PizzaService {
         return repository.findById(id).orElse(null);
     }
 
-    @Override
+    @Transactional
     public void aggiorna(Pizza pizzaInstance) {
         Pizza pizzaReloaded = repository.findById(pizzaInstance.getId()).orElse(null);
         if(pizzaReloaded == null) throw new RuntimeException("Elemento non trovato");
@@ -36,13 +36,13 @@ public class PizzaServiceImpl implements PizzaService {
         repository.save(pizzaReloaded);
     }
 
-    @Override
+    @Transactional
     public void inserisciNuovo(Pizza pizzaInstance) {
         pizzaInstance.setAttivo(true);
         repository.save(pizzaInstance);
     }
 
-    @Override
+    @Transactional
     public void rimuovi(Long idToRemove) {
         repository.deleteById(idToRemove);
     }

@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/pizza")
-public class PizzaController {
+@RequestMapping("/api/cliente")
+public class ClienteController {
 
-    //TODO Implement PizzaController
+    //TODO Implement ClienteController
 }

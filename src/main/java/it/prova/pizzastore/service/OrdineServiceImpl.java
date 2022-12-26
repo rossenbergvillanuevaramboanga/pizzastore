@@ -30,11 +30,12 @@ public class OrdineServiceImpl implements OrdineService{
         return repository.findByIdEager(id).orElse(null);
     }
 
-    @Override
+    @Transactional
     public void aggiorna(Ordine ordineInstance) {
         Ordine ordineReloaded = repository.findById(ordineInstance.getId()).orElse(null);
         if(ordineReloaded == null)
             throw new RuntimeException("Elemento non trovato");
+        ordineReloaded.setCliente(ordineInstance.getCliente());
         ordineReloaded.setPizze(ordineInstance.getPizze());
         ordineReloaded.setClosed(ordineInstance.getClosed());
         ordineReloaded.setCodice(ordineInstance.getCodice());
@@ -42,13 +43,13 @@ public class OrdineServiceImpl implements OrdineService{
         repository.save(ordineReloaded);
     }
 
-    @Override
+    @Transactional
     public void inserisciNuovo(Ordine ordineInstance) {
         ordineInstance.setClosed(false);
         repository.save(ordineInstance);
     }
 
-    @Override
+    @Transactional
     public void rimuovi(Long idToRemove) {
         //Eliminazione logica
         Ordine ordineReloaded = repository.findById(idToRemove).orElse(null);

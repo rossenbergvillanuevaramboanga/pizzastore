@@ -1,6 +1,7 @@
 package it.prova.pizzastore.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import it.prova.pizzastore.model.Cliente;
 import it.prova.pizzastore.model.Ordine;
 import it.prova.pizzastore.model.Pizza;
 import it.prova.pizzastore.model.Utente;
@@ -32,10 +33,10 @@ public class OrdineDTO {
     private Integer costo;
 
     private Long[] pizzeIds;
-
+    private Long clienteId;
     private Long fattorinoId;
 
-    public Ordine buildOrdineModel(boolean includeIdPizze, boolean includeIdFattorino){
+    public Ordine buildOrdineModel(boolean includeIdPizze, boolean includeIdFattorino, boolean includeIdCliente){
         Ordine result = Ordine.builder()
                 .id(id)
                 .data(data)
@@ -48,6 +49,9 @@ public class OrdineDTO {
 
         if (includeIdFattorino && fattorinoId != null)
             result.setFattorino(Utente.builder().id(id).build());
+
+        if (includeIdCliente && clienteId != null)
+            result.setCliente(Cliente.builder().id(id).build());
 
         return result;
     }
@@ -66,6 +70,9 @@ public class OrdineDTO {
 
         if(!ordineModel.getFattorino().equals(null))
             result.fattorinoId = ordineModel.getFattorino().getId();
+
+        if(!ordineModel.getCliente().equals(null))
+            result.clienteId = ordineModel.getCliente().getId();
 
         return result;
     }
