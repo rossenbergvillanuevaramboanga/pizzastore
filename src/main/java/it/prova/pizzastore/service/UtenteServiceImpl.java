@@ -4,6 +4,7 @@ import it.prova.pizzastore.model.StatoUtente;
 import it.prova.pizzastore.model.Utente;
 import it.prova.pizzastore.repository.utente.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +18,8 @@ public class UtenteServiceImpl implements UtenteService {
     @Autowired
     private UtenteRepository repository;
 
-/*    @Autowired
-    private PasswordEncoder passwordEncoder;*/
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<Utente> listAllUtenti() {
         return (List<Utente>) repository.findAll();
@@ -48,7 +49,7 @@ public class UtenteServiceImpl implements UtenteService {
     @Transactional
     public void inserisciNuovo(Utente utenteInstance) {
         utenteInstance.setStato(StatoUtente.CREATO);
-/*        utenteInstance.setPassword(passwordEncoder.encode(utenteInstance.getPassword()));*/
+        utenteInstance.setPassword(passwordEncoder.encode(utenteInstance.getPassword()));
         utenteInstance.setDateCreated(LocalDate.now());
         repository.save(utenteInstance);
     }
@@ -56,7 +57,7 @@ public class UtenteServiceImpl implements UtenteService {
     @Transactional
     public void rimuovi(Long idToRemove) {
         repository.deleteById(idToRemove);
-        ;
+
     }
 
     public List<Utente> findByExample(Utente example) {
