@@ -4,6 +4,9 @@ import it.prova.pizzastore.model.Cliente;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Builder
 @Setter
@@ -26,7 +29,7 @@ public class ClienteDTO {
 
     private boolean attivo;
 
-    public Cliente buildClidenteModel(){
+    public Cliente buildClienteModel(){
         Cliente result = Cliente.builder()
                 .id(id)
                 .nome(nome)
@@ -48,6 +51,18 @@ public class ClienteDTO {
                 .build();
 
         return result;
+    }
+
+    public static List<ClienteDTO> createClienteDTOListFromModelSet(Set<Cliente> modelListInput){
+        return modelListInput.stream().map(cliente -> {
+            return ClienteDTO.buildClienteDTOFromModel(cliente);
+        }).collect(Collectors.toList());
+    }
+
+    public static List<ClienteDTO> createClienteDTOListFromModelList(List<Cliente> modelListInput){
+        return modelListInput.stream().map(cliente -> {
+            return ClienteDTO.buildClienteDTOFromModel(cliente);
+        }).collect(Collectors.toList());
     }
 
 

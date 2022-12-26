@@ -11,6 +11,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Builder
@@ -75,5 +77,17 @@ public class OrdineDTO {
             result.clienteId = ordineModel.getCliente().getId();
 
         return result;
+    }
+
+    public static List<OrdineDTO> createOrdineDTOListFromModelSet(Set<Ordine> modelListInput){
+        return modelListInput.stream().map(ordine -> {
+            return OrdineDTO.buildOrdineDTOFromModel(ordine);
+        }).collect(Collectors.toList());
+    }
+
+    public static List<OrdineDTO> createOrdineDTOListFromModelList(List<Ordine> modelListInput){
+        return modelListInput.stream().map(ordine -> {
+            return OrdineDTO.buildOrdineDTOFromModel(ordine);
+        }).collect(Collectors.toList());
     }
 }
