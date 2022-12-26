@@ -36,8 +36,6 @@ public class Ordine {
     private Integer costo;
 
     /*Legami foreign key su Pizza e UtenteFattorino*/
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = true)
     private Cliente cliente;
