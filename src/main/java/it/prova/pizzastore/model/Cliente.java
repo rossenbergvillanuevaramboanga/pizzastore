@@ -25,5 +25,5 @@ public class Cliente {
     @Column(name = "indirizzo")
     private String indirizzo;
     @Column(name = "attivo")
-    private boolean attivo;
+    private Boolean attivo;
 }

@@ -15,4 +15,5 @@ public interface ClienteService {
     public Cliente inserisciNuovo(Cliente clienteInstance);
 
     public void rimuovi(Long idToRemove);
+    public List<Cliente> findByExample(Cliente example);
 }

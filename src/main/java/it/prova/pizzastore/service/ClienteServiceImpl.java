@@ -32,7 +32,7 @@ public class ClienteServiceImpl implements ClienteService{
         clienteReloaded.setNome(clienteInstance.getNome());
         clienteReloaded.setCognome(clienteInstance.getCognome());
         clienteReloaded.setIndirizzo(clienteInstance.getIndirizzo());
-        clienteReloaded.setAttivo(clienteInstance.isAttivo());
+        clienteReloaded.setAttivo(clienteInstance.getAttivo());
         return repository.save(clienteInstance);
 
     }
@@ -50,5 +50,10 @@ public class ClienteServiceImpl implements ClienteService{
             throw new RuntimeException("Elemento non trovato");
         clienteReloaded.setAttivo(false);
         repository.save(clienteReloaded);
+    }
+
+    @Override
+    public List<Cliente> findByExample(Cliente example) {
+        return repository.findByExample(example);
     }
 }

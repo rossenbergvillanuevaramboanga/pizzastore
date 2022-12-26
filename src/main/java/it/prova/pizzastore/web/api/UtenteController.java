@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/utente")
 public class UtenteController {
 
-    //TODO Implement UtenteController
+
     @Autowired
     private UtenteService utenteService;
 
