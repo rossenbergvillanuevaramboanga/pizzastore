@@ -1,11 +1,13 @@
 package it.prova.pizzastore.service;
 
+import it.prova.pizzastore.model.Cliente;
 import it.prova.pizzastore.model.Ordine;
 import it.prova.pizzastore.repository.ordine.OrdineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -62,6 +64,31 @@ public class OrdineServiceImpl implements OrdineService{
     @Override
     public List<Ordine> findByExample(Ordine example) {
         return repository.findByExample(example);
+    }
+
+    @Override
+    public Integer ricaviTotali(LocalDate dataInizio, LocalDate dataFine) {
+        return repository.sumRicaviTotali(dataInizio,dataFine);
+    }
+
+    @Override
+    public Integer costiTotali(LocalDate dataInizio, LocalDate dataFine) {
+        return repository.sumRicaviTotali(dataInizio,dataFine);
+    }
+
+    @Override
+    public Integer ordiniTotali(LocalDate dataInizio, LocalDate dataFine) {
+        return repository.countOrdiniTotali(dataInizio, dataFine);
+    }
+
+    @Override
+    public Integer pizzeTotali(LocalDate dataInizio, LocalDate dataFine) {
+        return repository.countPizzeTotali(dataInizio, dataFine);
+    }
+
+    @Override
+    public List<Cliente> findClientiVirtuosi(LocalDate dataInizio, LocalDate dataFine) {
+        return repository.findClientiVirtuosi(dataInizio,dataFine);
     }
 
 }

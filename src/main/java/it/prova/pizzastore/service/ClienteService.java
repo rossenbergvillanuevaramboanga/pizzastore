@@ -18,4 +18,5 @@ public interface ClienteService {
     public List<Cliente> findByExample(Cliente example);
 
     public Cliente findByNomeAndCognome(String nome, String cognome);
+
 }

@@ -1,7 +1,12 @@
 package it.prova.pizzastore.web.api;
 
+import it.prova.pizzastore.dto.ClienteDTO;
+import it.prova.pizzastore.dto.DateDTO;
 import it.prova.pizzastore.dto.OrdineDTO;
+import it.prova.pizzastore.dto.StatisticheDTO;
+import it.prova.pizzastore.model.Cliente;
 import it.prova.pizzastore.model.Ordine;
+import it.prova.pizzastore.service.ClienteService;
 import it.prova.pizzastore.service.OrdineService;
 import it.prova.pizzastore.web.api.exception.IdNotNullForInsertException;
 import it.prova.pizzastore.web.api.exception.NotFoundException;
@@ -15,9 +20,11 @@ import java.util.List;
 @RequestMapping("/api/ordine")
 public class OrdineController {
 
-    //TODO Implement OrdineController
     @Autowired
     private OrdineService ordineService;
+
+    @Autowired
+    private ClienteService clienteService;
 
     @GetMapping
     public List<OrdineDTO> getAll() {
@@ -62,6 +69,19 @@ public class OrdineController {
     @PostMapping("/search")
     public List<OrdineDTO> search(@RequestBody OrdineDTO example) {
         return OrdineDTO.createOrdineDTOListFromModelList(ordineService.findByExample(example.buildOrdineModel()));
+    }
+
+    @PostMapping("/statistiche")
+    public StatisticheDTO infos(@Valid @RequestBody DateDTO date){
+        StatisticheDTO result = StatisticheDTO.builder().build();
+        result.setCosti(ordineService.costiTotali(date.getDataInizio(), date.getDataFine()));
+        result.setRicavi(ordineService.ricaviTotali(date.getDataInizio(), date.getDataFine()));
+        result.setNumeroPizze(ordineService.pizzeTotali(date.getDataInizio(), date.getDataFine()));
+        result.setNumeroOrdini(ordineService.ordiniTotali(date.getDataInizio(), date.getDataFine()));
+        List<Cliente> clientiVirtuosi = ordineService.findClientiVirtuosi(date.getDataInizio(), date.getDataFine());
+        result.setClientiVirtuosi(ClienteDTO.createClienteDTOSetFromModelList(clientiVirtuosi));
+        return result;
+
     }
 
 

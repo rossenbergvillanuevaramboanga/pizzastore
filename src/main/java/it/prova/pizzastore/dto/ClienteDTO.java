@@ -67,6 +67,12 @@ public class ClienteDTO {
         }).collect(Collectors.toList());
     }
 
+    public static Set<ClienteDTO> createClienteDTOSetFromModelList(List<Cliente> modelListInput){
+        return modelListInput.stream().map(cliente -> {
+            return ClienteDTO.buildClienteDTOFromModel(cliente);
+        }).collect(Collectors.toSet());
+    }
+
 
 
 }
